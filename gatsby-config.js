@@ -1,6 +1,14 @@
 module.exports = {
   siteMetadata: {
-    title: "Testing CSV",
+    title: 'Testing CSV',
   },
-  plugins: [],
+  plugins: [
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'orders',
+        path: 'data',
+      },
+    },
+  ],
 };
