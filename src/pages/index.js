@@ -1,55 +1,52 @@
 import * as React from 'react';
+import Layout from '../components/layout';
+import { graphql } from 'gatsby';
 
-// styles
-const pageStyles = {
-  color: '#232129',
-  padding: '96px',
-  fontFamily: '-apple-system, Roboto, sans-serif, serif',
-};
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-};
-const headingAccentStyles = {
-  color: '#663399',
-};
-const paragraphStyles = {
-  marginBottom: 48,
-};
-const codeStyles = {
-  color: '#8A6534',
-  padding: 4,
-  backgroundColor: '#FFF4DB',
-  fontSize: '1.25rem',
-  borderRadius: 4,
-};
-const listStyles = {
-  marginBottom: 96,
-  paddingLeft: 0,
-};
-const listItemStyles = {
-  fontWeight: '300',
-  fontSize: '24px',
-  maxWidth: '560px',
-};
+export const query = graphql`
+  query {
+    allPubListCsv {
+      nodes {
+        Ad_Copy_Deadline
+        Closing_Date
+        Issue
+        Issue_Date
+        Issue_Month
+        Product
+        Year
+      }
+    }
+  }
+`;
 
-const linkStyle = {
-  color: '#8954A8',
-  fontWeight: 'bold',
-  fontSize: '16px',
-  verticalAlign: '5%',
-};
+export default function Home({ data }) {
+  const publicationNodes = data.allPubListCsv.nodes;
 
-const docLinkStyle = {
-  ...linkStyle,
-  listStyleType: 'none',
-  marginBottom: 24,
-};
-
-const descriptionStyle = {
-  color: '#232129',
-  fontSize: '14px',
-};
-
-export default () => <p>Too old to wring the secret from the master</p>;
+  return (
+    <Layout>
+      <table>
+        <thead>
+          <tr>
+            <th>Ad Copy Deadline</th>
+            <th>Closing Date</th>
+            <th>Issue Date</th>
+            <th>Issue Month</th>
+            <th>Product</th>
+            <th>Year</th>
+          </tr>
+        </thead>
+        <tbody>
+          {publicationNodes.map((node) => (
+            <tr key={node.id}>
+              <th>{node.Ad_Copy_Deadline}</th>
+              <th>{node.Closing_Date}</th>
+              <th>{node.Issue_Date}</th>
+              <th>{node.Issue_Month}</th>
+              <th>{node.Product}</th>
+              <th>{node.Year}</th>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </Layout>
+  );
+}

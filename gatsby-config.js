@@ -10,5 +10,6 @@ module.exports = {
         path: 'data',
       },
     },
+    `gatsby-transformer-csv`,
   ],
 };

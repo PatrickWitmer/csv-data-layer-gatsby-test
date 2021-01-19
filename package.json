@@ -17,6 +17,7 @@
   "dependencies": {
     "gatsby": "^2.26.1",
     "gatsby-source-filesystem": "^2.10.0",
+    "gatsby-transformer-csv": "^2.9.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }
